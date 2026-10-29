@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FoodShare | Surplus Food Redistribution</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#home">Food<span>Share</span></a>
+    <nav id="nav"></nav>
+  </header>
+
+  <main>
+    <section id="home" class="hero page">
+      <div>
+        <p class="eyebrow">ONLINE FOOD DISTRIBUTION & SURPLUS FOOD REDISTRIBUTION</p>
+        <h1>Good food should reach people, not the bin.</h1>
+        <p class="hero-copy">Connect donors with people and organizations that can use safe surplus food. List available food, request it, and track every redistribution.</p>
+        <div class="actions">
+          <button class="btn primary" data-action="show-register">Get Started</button>
+          <button class="btn secondary" data-action="show-food">Browse Food</button>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="stat"><strong id="stat-meals">0</strong><span>Meals available</span></div>
+        <div class="stat"><strong id="stat-donors">0</strong><span>Active donors</span></div>
+        <div class="stat"><strong id="stat-claimed">0</strong><span>Meals redistributed</span></div>
+      </div>
+    </section>
+
+    <section id="auth" class="page hidden">
+      <div class="panel narrow">
+        <div class="tabs">
+          <button class="tab active" data-tab="login">Login</button>
+          <button class="tab" data-tab="register">Register</button>
+        </div>
+        <form id="login-form">
+          <h2>Welcome back</h2>
+          <label>Email<input type="email" id="login-email" required></label>
+          <label>Password<input type="password" id="login-password" minlength="6" required></label>
+          <button class="btn primary full">Login</button>
+        </form>
+        <form id="register-form" class="hidden">
+          <h2>Create an account</h2>
+          <label>Full name<input type="text" id="reg-name" required maxlength="100"></label>
+          <label>Email<input type="email" id="reg-email" required></label>
+          <label>Password<input type="password" id="reg-password" minlength="6" required></label>
+          <label>Role
+            <select id="reg-role">
+              <option value="donor">Donor</option>
+              <option value="recipient">Recipient / NGO</option>
+              <option value="volunteer">Volunteer</option>
+            </select>
+          </label>
+          <button class="btn primary full">Create Account</button>
+        </form>
+        <div id="auth-message" class="message"></div>
+      </div>
+    </section>
+
+    <section id="food" class="page hidden">
+      <div class="section-head">
+        <div><p class="eyebrow">AVAILABLE FOOD</p><h2>Find surplus food near you</h2></div>
+        <button class="btn primary auth-only" data-action="show-create">+ List Food</button>
+      </div>
+      <div class="filters">
+        <input id="search-food" placeholder="Search food or location">
+        <select id="status-filter"><option value="available">Available</option><option value="">All statuses</option></select>
+      </div>
+      <div id="food-list" class="grid"></div>
+    </section>
+
+    <section id="dashboard" class="page hidden">
+      <div class="section-head"><div><p class="eyebrow">YOUR WORKSPACE</p><h2 id="dashboard-title">Dashboard</h2></div></div>
+      <div id="dashboard-content"></div>
+    </section>
+
+    <section id="create" class="page hidden">
+      <div class="panel">
+        <h2>List surplus food</h2>
+        <p class="muted">Provide enough information for a recipient to safely collect the food.</p>
+        <form id="food-form" class="form-grid">
+          <label>Food name<input id="food-name" required maxlength="120"></label>
+          <label>Category<select id="food-category"><option>Cooked Meal</option><option>Groceries</option><option>Bakery</option><option>Fruits & Vegetables</option><option>Other</option></select></label>
+          <label>Quantity (servings)<input id="food-quantity" type="number" min="1" required></label>
+          <label>Expiry / best-before<input id="food-expiry" type="datetime-local" required></label>
+          <label class="wide">Pickup location<input id="food-location" required maxlength="200"></label>
+          <label class="wide">Description<textarea id="food-description" rows="4" maxlength="1000" placeholder="Ingredients, packaging, dietary information, etc."></textarea></label>
+          <button class="btn primary">Publish Food</button>
+          <button type="button" class="btn secondary" data-action="show-food">Cancel</button>
+        </form>
+        <div id="food-message" class="message"></div>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast"></div>
+  <script src="app.js"></script>
+</body>
+</html>
